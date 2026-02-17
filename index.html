@@ -1,307 +1,34 @@
 <!DOCTYPE html>
 <html lang="bn">
 <head>
-<meta charset="UTF-8">
-<title>Luxury Bengali Wedding Invitation</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8">
+  <title>Luxury Bengali Wedding Invitation</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@700&display=swap" rel="stylesheet">
-
-<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-
-<style>
-body{
-  margin:0;
-  font-family:'Noto Serif Bengali',serif;
-  background:radial-gradient(circle at center,#4b0000,#1a0000);
-  color:#f3c16d;
-  text-align:center;
-  overflow-x:hidden;
-}
-
-/* Music */
-audio{display:none}
-
-/* Scene */
-.scene{
-  perspective:2500px;
-  display:flex;
-  justify-content:center;
-  margin-top:40px;
-}
-
-/* Book */
-.book{
-  width:90vw;
-  max-width:420px;
-  height:580px;
-  position:relative;
-  transform-style:preserve-3d;
-  animation:openBook 1.5s ease forwards;
-}
-
-/* Spine depth */
-.book::before{
-  content:"";
-  position:absolute;
-  left:-18px;
-  width:18px;
-  height:100%;
-  background:linear-gradient(to right,#000,#1a0000);
-  transform:rotateY(90deg);
-  transform-origin:left;
-}
-
-/* Pages */
-.page{
-  position:absolute;
-  width:100%;
-  height:100%;
-  background:linear-gradient(145deg,#650000,#3b0000);
-  border-radius:12px;
-  transform-origin:left;
-  transform-style:preserve-3d;
-  transition:transform 1s;
-  box-shadow:0 12px 30px rgba(0,0,0,0.6);
-  cursor:pointer;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  padding:30px;
-}
-
-.page.flipped{
-  transform:rotateY(-180deg);
-}
-
-/* Gold foil */
-.gold{
-  background:linear-gradient(45deg,#d4af37,#fff5b7,#b8860b,#fff5b7);
-  background-size:200% 200%;
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
-  animation:foil 4s linear infinite;
-}
-
-@keyframes foil{
-  0%{background-position:0% 50%;}
-  100%{background-position:200% 50%;}
-}
-
-/* Spotlight */
-.spotlight{
-  animation:spotlight 2s ease forwards;
-}
-@keyframes spotlight{
-  0%{opacity:0; transform:scale(0.8);}
-  100%{opacity:1; transform:scale(1);}
-}
-
-/* Floating */
-.float{
-  animation:float 4s ease-in-out infinite;
-}
-@keyframes float{
-  0%{transform:translateY(0);}
-  50%{transform:translateY(-10px);}
-  100%{transform:translateY(0);}
-}
-
-/* Bride blink */
-.blink{
-  animation:blink 5s infinite;
-}
-@keyframes blink{
-  0%,95%,100%{opacity:1;}
-  97%{opacity:0.3;}
-}
-
-/* Groom wave */
-.wave{
-  transform-origin:center;
-  animation:wave 2s infinite;
-}
-@keyframes wave{
-  0%{transform:rotate(0);}
-  25%{transform:rotate(10deg);}
-  50%{transform:rotate(0);}
-  75%{transform:rotate(10deg);}
-  100%{transform:rotate(0);}
-}
-
-/* Petals */
-.petals{
-  position:absolute;
-  width:100%;
-  height:100%;
-  pointer-events:none;
-  overflow:hidden;
-}
-.petal{
-  position:absolute;
-  top:-20px;
-  font-size:18px;
-  animation:fall linear infinite;
-}
-@keyframes fall{
-  0%{transform:translateY(-20px) rotate(0deg);}
-  100%{transform:translateY(650px) rotate(360deg);}
-}
-
-/* Open animation */
-@keyframes openBook{
-  from{transform:rotateY(0);}
-  to{transform:rotateY(-15deg);}
-}
-
-/* Buttons */
-.controls{
-  margin-top:20px;
-}
-button{
-  background:gold;
-  border:none;
-  padding:10px 15px;
-  margin:6px;
-  border-radius:8px;
-  font-weight:bold;
-  cursor:pointer;
-}
-</style>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<audio id="bgMusic" preload="auto">
-  <source src="shehnai.mp3" type="audio/mpeg">
-</audio>
-
-<h2 class="gold">Luxury Bengali Wedding Invitation</h2>
+<h2 class="gold title">Luxury Bengali Wedding Invitation</h2>
 
 <div class="scene">
   <div id="book" class="book"></div>
 </div>
 
 <div class="controls">
-<button onclick="exportPDF()">Export PDF</button>
-<button onclick="shareBook()">Share</button>
+  <button onclick="exportPDF()">Export PDF</button>
 </div>
 
-<script>
-const { jsPDF } = window.jspdf;
+<!-- Page Flip Sound -->
+<audio id="pageSound" preload="auto">
+  <source src="page-flip.mp3" type="audio/mpeg">
+</audio>
 
-const pagesContent = [
-
-`<h3 class="gold spotlight">শ্রীশ্রী গণেশায় নমঃ</h3>`,
-
-`<div class="spotlight float" style="text-align:center;">
-   <h2 class="gold">কাজল ❤️ পূজা</h2>
-   <div style="font-size:70px; margin-top:20px; display:flex; justify-content:center; gap:30px;">
-      <div class="blink">👰</div>
-      <div class="wave">🤵</div>
-   </div>
-   <div class="petals" id="petals"></div>
-</div>`,
-
-`<div class="spotlight">
-   <h3 class="gold">শুভ বিবাহ</h3>
-   <p>০৯ই মার্চ ২০২৬<br>সাহেবেরহাট, বড় নলাঙ্গি বাড়ি, কোচবিহার</p>
-</div>`,
-
-`<div class="spotlight">
-   <h3 class="gold">রিসেপশন</h3>
-   <p>১২ই মার্চ ২০২৬<br>সাহেবেরহাট, বড় নলাঙ্গি বাড়ি, কোচবিহার</p>
-</div>`,
-
-/* ===== Romantic Story Page (NEW) ===== */
-
-`<div class="spotlight" style="text-align:center;">
-  <h3 class="gold">আমাদের গল্প</h3>
-
-  <p style="margin-top:20px; line-height:1.8;">
-    এক নীরব বিকেলের আলোয় শুরু হয়েছিল তাদের পথচলা।  
-    অচেনা থেকে চেনা, চেনা থেকে আপন—  
-    সময় ধীরে ধীরে বুনেছে এক অদৃশ্য বন্ধন।
-  </p>
-
-  <p style="margin-top:15px; line-height:1.8;">
-    স্বপ্নগুলো এক হয়েছে, ইচ্ছেগুলো মিলেছে,  
-    আর আজ সেই ভালোবাসা পেয়েছে  
-    পবিত্র বিবাহের অঙ্গীকার।
-  </p>
-
-  <p style="margin-top:15px; line-height:1.8;">
-    কাজল ও পূজা  
-    শুরু করতে চলেছে  
-    তাদের নতুন জীবনের সুন্দর অধ্যায়।
-  </p>
-</div>`,
-
-/* ===== Final Page ===== */
-
-`<h3 class="gold spotlight">আপনার উপস্থিতি ও আশীর্বাদ একান্ত কাম্য</h3>`
-
-];
-function renderBook(){
-  const book=document.getElementById("book");
-  book.innerHTML="";
-  pagesContent.forEach((html,index)=>{
-    const page=document.createElement("div");
-    page.className="page";
-    page.style.zIndex=100-index;
-    page.innerHTML=html;
-    page.onclick=()=>page.classList.toggle("flipped");
-    book.appendChild(page);
-  });
-}
-
-renderBook();
-
-/* Petals */
-setTimeout(()=>{
-  const container=document.getElementById("petals");
-  if(container){
-    for(let i=0;i<20;i++){
-      const petal=document.createElement("div");
-      petal.className="petal";
-      petal.innerHTML="🌸";
-      petal.style.left=Math.random()*100+"%";
-      petal.style.animationDuration=(5+Math.random()*5)+"s";
-      petal.style.opacity=Math.random();
-      container.appendChild(petal);
-    }
-  }
-},1000);
-
-/* Music play on first click */
-document.body.addEventListener("click",()=>{
-  document.getElementById("bgMusic").play();
-},{once:true});
-
-/* Export PDF */
-async function exportPDF(){
-  const pdf=new jsPDF("p","mm","a4");
-  const pages=document.querySelectorAll(".page");
-
-  for(let i=0;i<pages.length;i++){
-    const canvas=await html2canvas(pages[i],{scale:3});
-    const img=canvas.toDataURL("image/jpeg",1);
-    if(i!==0) pdf.addPage();
-    pdf.addImage(img,"JPEG",0,0,210,297);
-  }
-  pdf.save("Wedding_Invitation.pdf");
-}
-
-/* Share */
-function shareBook(){
-  navigator.clipboard.writeText(window.location.href);
-  alert("Link copied!");
-}
-</script>
+<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="script.js"></script>
 
 </body>
 </html>
-
-
-
