@@ -7,26 +7,69 @@ const pagesContent = [
 `<h3 class="gold">শ্রীশ্রী গণেশায় নমঃ</h3>`,
 
 `<div style="text-align:center;">
+
 <h2 class="gold">কাজল ❤️ পূজা</h2>
 
-<svg width="260" height="260" viewBox="0 0 260 260" style="margin-top:20px">
-
-  <!-- Groom -->
-  <g>
-    <circle cx="170" cy="80" r="22" fill="#f3c16d"/>
-    <rect x="150" y="100" width="40" height="80" rx="20" fill="#1a1a1a"/>
-    <rect x="145" y="110" width="15" height="50" rx="10" fill="#f3c16d" class="hand"/>
-  </g>
+<svg width="280" height="280" viewBox="0 0 300 300" style="margin-top:20px">
 
   <!-- Bride -->
-  <g>
-    <circle cx="90" cy="80" r="22" fill="#f3c16d"/>
-    <path d="M60 100 Q90 160 120 100 Z" fill="#b5111f"/>
-    <path d="M60 100 Q40 150 80 180" stroke="#d4af37" stroke-width="8" fill="none" class="pallu"/>
+  <g id="bride">
+
+    <!-- Face -->
+    <circle cx="110" cy="90" r="24" fill="#f3c16d"/>
+
+    <!-- Hair -->
+    <path d="M85 85 Q110 50 135 85" fill="#111"/>
+
+    <!-- Saree Body -->
+    <path d="M80 115 Q110 200 140 115 Z" fill="#b5111f"/>
+
+    <!-- Saree Pallu -->
+    <path d="M85 115 Q50 180 100 220"
+          stroke="#d4af37"
+          stroke-width="10"
+          fill="none"
+          class="pallu"/>
+
+    <!-- Bride Arm -->
+    <rect x="120" y="130" width="14" height="55"
+          rx="8"
+          fill="#f3c16d"
+          class="handBride"/>
+
+  </g>
+
+  <!-- Groom -->
+  <g id="groom">
+
+    <!-- Face -->
+    <circle cx="190" cy="90" r="24" fill="#f3c16d"/>
+
+    <!-- Hair -->
+    <path d="M165 80 Q190 55 215 80" fill="#111"/>
+
+    <!-- Sherwani -->
+    <rect x="165" y="115"
+          width="50"
+          height="95"
+          rx="22"
+          fill="#1a1a1a"/>
+
+    <!-- Groom Arm -->
+    <rect x="175" y="130"
+          width="14"
+          height="55"
+          rx="8"
+          fill="#f3c16d"
+          class="handGroom"/>
+
   </g>
 
   <!-- Joined Hands -->
-  <circle cx="130" cy="140" r="10" fill="#f3c16d" class="hold"/>
+  <circle cx="160" cy="170"
+          r="10"
+          fill="#f3c16d"
+          class="hold"/>
 
 </svg>
 
@@ -78,4 +121,5 @@ async function exportPDF(){
 
   pdf.save("Wedding_Invitation.pdf");
 }
+
 
