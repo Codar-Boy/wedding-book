@@ -95,28 +95,47 @@ body{
   100%{transform:translateX(8px);}
 }
 
-/* Hand Move */
-.hand{
+/* Bride pallu flow */
+.pallu{
   transform-origin:top;
-  animation:handMove 3s ease-in-out infinite alternate;
-}
-@keyframes handMove{
-  0%{transform:rotate(0deg);}
-  100%{transform:rotate(-8deg);}
+  animation:palluFlow 3s ease-in-out infinite alternate;
 }
 
-/* Hand Hold Pulse */
+@keyframes palluFlow{
+  0%{transform:rotate(0deg);}
+  100%{transform:rotate(8deg);}
+}
+
+/* Bride hand subtle move */
+.handBride{
+  transform-origin:top;
+  animation:brideHand 3s ease-in-out infinite alternate;
+}
+
+@keyframes brideHand{
+  0%{transform:rotate(0deg);}
+  100%{transform:rotate(-6deg);}
+}
+
+/* Groom hand subtle move */
+.handGroom{
+  transform-origin:top;
+  animation:groomHand 3s ease-in-out infinite alternate;
+}
+
+@keyframes groomHand{
+  0%{transform:rotate(0deg);}
+  100%{transform:rotate(6deg);}
+}
+
+/* Hand holding pulse */
 .hold{
   animation:holdPulse 2s infinite;
 }
+
 @keyframes holdPulse{
   0%,100%{transform:scale(1);}
-  50%{transform:scale(1.1);}
-}
-
-@keyframes openBook{
-  from{transform:rotateY(0);}
-  to{transform:rotateY(-15deg);}
+  50%{transform:scale(1.12);}
 }
 
 .controls{
@@ -132,3 +151,4 @@ button{
   font-weight:bold;
   cursor:pointer;
 }
+
