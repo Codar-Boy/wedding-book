@@ -1,0 +1,40 @@
+body {
+  font-family: 'Noto Serif Bengali', serif;
+}
+
+.font-hindslg {
+  font-family: 'Hind Siliguri', sans-serif;
+}
+
+.shadow-gold {
+  box-shadow: 0 0 15px rgba(255, 200, 100, 0.4);
+}
+
+.drop-shadow-glow {
+  text-shadow: 0 0 10px rgba(255, 200, 100, 0.6);
+}
+
+.book-page {
+  width: 595px;   /* A4 width in px ratio */
+  height: 842px;  /* A4 height in px ratio */
+  background: linear-gradient(135deg, #5c0000, #380000);
+  border: 4px solid #caa74b;
+  border-radius: 20px;
+  padding: 60px 40px;
+  color: #f3c16d;
+  position: relative;
+  overflow: hidden;
+}
+
+.book-border {
+  position: absolute;
+  inset: 20px;
+  border: 2px solid rgba(255, 215, 120, 0.4);
+  border-radius: 16px;
+}
+
+.gold-divider {
+  height: 2px;
+  background: linear-gradient(to right, transparent, #f3c16d, transparent);
+  margin: 20px 0;
+}
