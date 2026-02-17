@@ -27,7 +27,6 @@ body{
   animation:openBook 1.5s ease forwards;
 }
 
-/* Spine */
 .book::before{
   content:"";
   position:absolute;
@@ -58,21 +57,10 @@ body{
   padding:30px;
 }
 
-.page::after{
-  content:"";
-  position:absolute;
-  right:0;
-  top:0;
-  width:40px;
-  height:100%;
-  background:linear-gradient(to left, rgba(0,0,0,0.4), transparent);
-}
-
 .page.flipped{
   transform:rotateY(-180deg);
 }
 
-/* Gold Foil Text */
 .gold{
   background:linear-gradient(45deg,#d4af37,#fff5b7,#b8860b,#fff5b7);
   background-size:200% 200%;
@@ -86,20 +74,18 @@ body{
   100%{background-position:200% 50%;}
 }
 
-/* Couple Animation */
-@keyframes coupleFade {
-  0% {opacity: 0; transform: scale(0.9);}
-  50% {opacity: 1; transform: scale(1.03);}
-  100% {opacity: 1; transform: scale(1);}
-}
-
+/* Couple Image Animation */
 .couple-img{
   max-width:280px;
   width:90%;
-  animation:coupleFade 1.8s ease-in-out;
+  animation:coupleZoom 2s ease-in-out;
 }
 
-/* Controls */
+@keyframes coupleZoom{
+  0%{opacity:0; transform:scale(0.8);}
+  100%{opacity:1; transform:scale(1);}
+}
+
 .controls{
   margin-top:20px;
 }
