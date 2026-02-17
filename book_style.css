@@ -86,15 +86,6 @@ body{
   100%{background-position:200% 50%;}
 }
 
-/* Pallu Animation */
-.pallu{
-  animation:palluFlow 3s ease-in-out infinite alternate;
-}
-@keyframes palluFlow{
-  0%{transform:translateX(0px);}
-  100%{transform:translateX(8px);}
-}
-
 /* Bride pallu flow */
 .pallu{
   transform-origin:top;
@@ -151,4 +142,5 @@ button{
   font-weight:bold;
   cursor:pointer;
 }
+
 
