@@ -1,50 +1,79 @@
 body{
+  margin:0;
   font-family:'Noto Serif Bengali',serif;
-  background:#2b0000;
-  perspective:3000px;
+  background:radial-gradient(circle at center,#4b0000,#1a0000);
+  color:#f3c16d;
+  text-align:center;
   overflow-x:hidden;
 }
 
-/* Hardcover */
-.book-container{
-  position:relative;
-  width:620px;
-  height:880px;
-  margin:auto;
-  transform-style:preserve-3d;
-  transition:transform 1.5s ease;
+.title{
+  margin-top:20px;
 }
 
-.book-open{
-  transform:rotateY(-15deg);
+.scene{
+  perspective:2500px;
+  display:flex;
+  justify-content:center;
+  margin-top:30px;
 }
 
 .book{
-  width:100%;
-  height:100%;
+  width:90vw;
+  max-width:420px;
+  height:580px;
   position:relative;
+  transform-style:preserve-3d;
+  animation:openBook 1.5s ease forwards;
 }
 
-/* Pages */
+/* Spine */
+.book::before{
+  content:"";
+  position:absolute;
+  left:-18px;
+  width:18px;
+  height:100%;
+  background:linear-gradient(to right,#000,#1a0000);
+  transform:rotateY(90deg);
+  transform-origin:left;
+}
+
 .page{
   position:absolute;
   width:100%;
   height:100%;
-  background:#5a0000;
-  border-radius:15px;
+  background:linear-gradient(145deg,#650000,#3b0000);
+  border-radius:12px;
   transform-origin:left;
   transform-style:preserve-3d;
   transition:transform 1s;
-  box-shadow:0 10px 40px rgba(0,0,0,0.6);
+  box-shadow:
+    0 15px 35px rgba(0,0,0,0.6),
+    inset -10px 0 20px rgba(0,0,0,0.5);
   cursor:pointer;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:30px;
+}
+
+.page::after{
+  content:"";
+  position:absolute;
+  right:0;
+  top:0;
+  width:40px;
+  height:100%;
+  background:linear-gradient(to left, rgba(0,0,0,0.4), transparent);
 }
 
 .page.flipped{
   transform:rotateY(-180deg);
 }
 
-/* Gold foil effect */
-.gold-text{
+/* Gold Foil */
+.gold{
   background:linear-gradient(45deg,#d4af37,#fff5b7,#b8860b,#fff5b7);
   background-size:200% 200%;
   -webkit-background-clip:text;
@@ -57,37 +86,49 @@ body{
   100%{background-position:200% 50%;}
 }
 
-/* Floral border */
-.border{
-  position:absolute;
-  inset:25px;
-  border:3px solid #d4af37;
-  border-radius:12px;
+/* Pallu Animation */
+.pallu{
+  animation:palluFlow 3s ease-in-out infinite alternate;
+}
+@keyframes palluFlow{
+  0%{transform:translateX(0px);}
+  100%{transform:translateX(8px);}
 }
 
-/* Binding shadow */
-.binding{
-  position:absolute;
-  left:0;
-  top:0;
-  bottom:0;
-  width:20px;
-  background:linear-gradient(to right,rgba(0,0,0,0.7),transparent);
+/* Hand Move */
+.hand{
+  transform-origin:top;
+  animation:handMove 3s ease-in-out infinite alternate;
+}
+@keyframes handMove{
+  0%{transform:rotate(0deg);}
+  100%{transform:rotate(-8deg);}
 }
 
-/* Admin Panel */
-.admin-panel{
-  background:#3a0000;
-  padding:20px;
-  border-radius:15px;
-  margin-bottom:20px;
-  color:#f3c16d;
+/* Hand Hold Pulse */
+.hold{
+  animation:holdPulse 2s infinite;
 }
-.admin-panel input{
-  background:#5a0000;
-  border:1px solid #d4af37;
-  padding:6px;
-  width:100%;
-  margin-bottom:10px;
-  color:#fff;
+@keyframes holdPulse{
+  0%,100%{transform:scale(1);}
+  50%{transform:scale(1.1);}
+}
+
+@keyframes openBook{
+  from{transform:rotateY(0);}
+  to{transform:rotateY(-15deg);}
+}
+
+.controls{
+  margin-top:20px;
+}
+
+button{
+  background:gold;
+  border:none;
+  padding:10px 15px;
+  margin:6px;
+  border-radius:8px;
+  font-weight:bold;
+  cursor:pointer;
 }
