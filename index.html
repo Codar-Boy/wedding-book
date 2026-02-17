@@ -1,38 +1,59 @@
 <!DOCTYPE html>
 <html lang="bn">
-  <head>
-    <meta charset="UTF-8">
-    <title>প্রিমিয়াম বিবাহ নিমন্ত্রণ পুস্তিকা • Premium Bengali Wedding Book</title>
-    <meta name="viewport" content="width=640, initial-scale=1, maximum-scale=1, user-scalable=no"/>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@3.4.3/dist/tailwind.min.css">
-    <link rel="stylesheet" href="book_style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@700&family=Noto+Serif+Bengali:wght@700&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/lucide@0.292.0/dist/umd/lucide.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-  </head>
-  <body class="bg-[#380000] min-h-screen flex flex-col items-center py-6">
-    <div class="w-full max-w-2xl bg-[#2e0000]/70 rounded-2xl shadow-xl border border-[#a67a2d]/30 p-4 pb-8">
-      <h1 class="text-center text-[2rem] font-serif mb-2 text-[#ebbb61] tracking-wide font-hindslg drop-shadow-glow">প্রিমিয়াম বিবাহ নিমন্ত্রণ পুস্তিকা</h1>
-      <div class="flex items-center justify-center mb-3">
-        <span class="inline-block rounded-full px-3 py-1 bg-[#b5111f] text-[#f8dfae] font-bold text-[1rem] tracking-wider shadow-gold">Royal Bengali Theme</span>
-      </div>
-      <div class="flex justify-center mb-4">
-        <button id="export-pdf" class="px-6 py-2 flex items-center gap-2 rounded-xl bg-gradient-to-br from-[#934200] to-[#f3c16d] text-white text-lg font-bold shadow-gold transition hover:scale-105 active:brightness-95">
-          <svg class="lucide lucide-download" width="1.4em" height="1.4em"></svg>
-          <span>Export as High-Quality PDF</span>
-        </button>
-      </div>
-      <div class="flex flex-col items-center gap-6 select-none" id="preview-pages"></div>
-      <div class="mt-8 flex items-center justify-center opacity-80 text-xs text-[#f3c16d] font-serif">
-        Made with love &nbsp;•&nbsp; প্রিমিয়াম ডিজাইন • <span class="lucide lucide-heart text-[#b5111f] w-4 h-4"></span>
-      </div>
+<head>
+  <meta charset="UTF-8">
+  <title>প্রিমিয়াম বিবাহ নিমন্ত্রণ পুস্তিকা • Premium Bengali Wedding Book</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@700&display=swap" rel="stylesheet">
+
+  <!-- Tailwind (Optional UI Styling) -->
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.4.3/dist/tailwind.min.css" rel="stylesheet">
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="book_style.css">
+
+</head>
+
+<body class="bg-[#2b0000] min-h-screen flex flex-col items-center py-6 overflow-x-hidden">
+
+  <div class="w-full max-w-5xl text-center">
+
+    <!-- Title -->
+    <h1 class="text-3xl md:text-4xl font-bold text-[#f3c16d] mb-6 tracking-wide">
+      📖 Premium Bengali Wedding Flip Book
+    </h1>
+
+    <!-- IMPORTANT: JS এখানেই সব render করবে -->
+    <div id="preview-pages" class="flex flex-col items-center gap-8"></div>
+
+    <!-- Export Button -->
+    <div class="mt-10">
+      <button id="export-pdf"
+        class="px-8 py-3 bg-gradient-to-r from-yellow-500 to-yellow-700 
+        text-black font-bold rounded-lg shadow-lg 
+        hover:scale-105 transition duration-300">
+        🖨 Export Print-Ready PDF
+      </button>
     </div>
-    <script type="module" src="pdf_book.js"></script>
-    <script>
-      lucide.createIcons();
-    </script>
-  </body>
+
+  </div>
+
+  <!-- ============================= -->
+  <!-- Script Order VERY IMPORTANT -->
+  <!-- ============================= -->
+
+  <!-- html2canvas -->
+  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+
+  <!-- jsPDF -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+  <!-- Your Custom JS -->
+  <script src="pdf_book.js"></script>
+
+</body>
 </html>
