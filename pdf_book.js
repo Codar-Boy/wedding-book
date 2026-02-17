@@ -1,44 +1,49 @@
-const { jsPDF } = window.jspdf;
 const book = document.getElementById("book");
 const flipSound = document.getElementById("pageSound");
 
 const pagesContent = [
 
-`<h3 class="gold">শ্রীশ্রী গণেশায় নমঃ</h3>`,
+`<div class="gold-text">শ্রীশ্রী গণেশায় নমঃ</div>`,
 
-`<div style="text-align:center;">
-  <h2 class="gold">কাজল ❤️ পূজা</h2>
-
-  <div style="margin-top:20px; display:flex; justify-content:center;">
-    <img
-      src="couple.png"
-      alt="Bengali Marriage Couple"
-      class="couple-img"
-    />
+`<div>
+  <div class="gold-text">কাজল ❤️ পূজা</div>
+  <div class="couple-wrapper" style="margin-top:25px;">
+    <img src="couple.png" class="couple-img">
   </div>
 </div>`,
 
-`<h3 class="gold">
+`<div class="gold-text">
 শুভ বিবাহ<br>
 ০৯ই মার্চ ২০২৬<br>
 সাহেবেরহাট, বড় নলাঙ্গি বাড়ি, কোচবিহার
-</h3>`,
+</div>`,
 
-`<h3 class="gold">
+`<div class="gold-text">
 রিসেপশন<br>
 ১২ই মার্চ ২০২৬<br>
 সাহেবেরহাট, বড় নলাঙ্গি বাড়ি, কোচবিহার
-</h3>`,
+</div>`,
 
-`<h3 class="gold">
+`<div class="gold-text">
 আমাদের গল্প<br><br>
 এক নীরব বিকেলের আলোয় শুরু হয়েছিল তাদের পথচলা।<br>
 আজ সেই ভালোবাসা পেয়েছে পবিত্র অঙ্গীকার।
-</h3>`,
+</div>`,
 
-`<h3 class="gold">আপনার উপস্থিতি ও আশীর্বাদ একান্ত কাম্য</h3>`
+`<div class="gold-text">আপনার উপস্থিতি ও আশীর্বাদ একান্ত কাম্য</div>`
 
 ];
+
+function createParticles(page){
+  for(let i=0;i<15;i++){
+    const particle=document.createElement("div");
+    particle.className="particle";
+    particle.style.left=Math.random()*100+"%";
+    particle.style.top=Math.random()*100+"%";
+    particle.style.animationDuration=(5+Math.random()*5)+"s";
+    page.appendChild(particle);
+  }
+}
 
 function renderBook(){
   pagesContent.forEach((html,index)=>{
@@ -46,6 +51,8 @@ function renderBook(){
     page.className="page";
     page.style.zIndex=100-index;
     page.innerHTML=html;
+
+    createParticles(page);
 
     page.onclick=()=>{
       page.classList.toggle("flipped");
@@ -58,18 +65,3 @@ function renderBook(){
 }
 
 renderBook();
-
-async function exportPDF(){
-  const pdf=new jsPDF("p","mm","a4");
-  const pages=document.querySelectorAll(".page");
-
-  for(let i=0;i<pages.length;i++){
-    const canvas=await html2canvas(pages[i],{scale:3});
-    const img=canvas.toDataURL("image/jpeg",1);
-
-    if(i!==0) pdf.addPage();
-    pdf.addImage(img,"JPEG",0,0,210,297);
-  }
-
-  pdf.save("Wedding_Invitation.pdf");
-}
