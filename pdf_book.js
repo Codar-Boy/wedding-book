@@ -11,7 +11,7 @@ const pagesContent = [
 
   <div style="margin-top:20px; display:flex; justify-content:center;">
     <img
-      src="https://cdn.iconscout.com/illustration/premium/thumb/bengali-mariage-couple-4467548-3703815.png"
+      src="couple.png"
       alt="Bengali Marriage Couple"
       class="couple-img"
     />
