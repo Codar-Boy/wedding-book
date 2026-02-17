@@ -10,70 +10,17 @@ const pagesContent = [
 
 <h2 class="gold">কাজল ❤️ পূজা</h2>
 
-<svg width="280" height="280" viewBox="0 0 300 300" style="margin-top:20px">
+<div style="margin-top:20px; display:flex; justify-content:center; align-items:center;">
 
-  <!-- Bride -->
-  <g id="bride">
+  <img
+    src="https://cdn.iconscout.com/illustration/premium/thumb/bengali-mariage-couple-4467548-3703815.png"
+    alt="Bengali Marriage Couple"
+    style="max-width:280px; width:90%; animation:coupleFade 1.8s ease-in-out;"
+  />
 
-    <!-- Face -->
-    <circle cx="110" cy="90" r="24" fill="#f3c16d"/>
+</div>
 
-    <!-- Hair -->
-    <path d="M85 85 Q110 50 135 85" fill="#111"/>
-
-    <!-- Saree Body -->
-    <path d="M80 115 Q110 200 140 115 Z" fill="#b5111f"/>
-
-    <!-- Saree Pallu -->
-    <path d="M85 115 Q50 180 100 220"
-          stroke="#d4af37"
-          stroke-width="10"
-          fill="none"
-          class="pallu"/>
-
-    <!-- Bride Arm -->
-    <rect x="120" y="130" width="14" height="55"
-          rx="8"
-          fill="#f3c16d"
-          class="handBride"/>
-
-  </g>
-
-  <!-- Groom -->
-  <g id="groom">
-
-    <!-- Face -->
-    <circle cx="190" cy="90" r="24" fill="#f3c16d"/>
-
-    <!-- Hair -->
-    <path d="M165 80 Q190 55 215 80" fill="#111"/>
-
-    <!-- Sherwani -->
-    <rect x="165" y="115"
-          width="50"
-          height="95"
-          rx="22"
-          fill="#1a1a1a"/>
-
-    <!-- Groom Arm -->
-    <rect x="175" y="130"
-          width="14"
-          height="55"
-          rx="8"
-          fill="#f3c16d"
-          class="handGroom"/>
-
-  </g>
-
-  <!-- Joined Hands -->
-  <circle cx="160" cy="170"
-          r="10"
-          fill="#f3c16d"
-          class="hold"/>
-
-</svg>
-
-</div>`,
+</div>`
 
 `<h3 class="gold">শুভ বিবাহ<br>০৯ই মার্চ ২০২৬<br>সাহেবেরহাট, বড় নালাঙ্গি বাড়ি, কোচবিহার</h3>`,
 
@@ -121,5 +68,6 @@ async function exportPDF(){
 
   pdf.save("Wedding_Invitation.pdf");
 }
+
 
 
