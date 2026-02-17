@@ -191,7 +191,8 @@ button{
 <script>
 const { jsPDF } = window.jspdf;
 
-const pagesContent=[
+const pagesContent = [
+
 `<h3 class="gold spotlight">শ্রীশ্রী গণেশায় নমঃ</h3>`,
 
 `<div class="spotlight float" style="text-align:center;">
@@ -212,7 +213,10 @@ const pagesContent=[
    <h3 class="gold">রিসেপশন</h3>
    <p>১২ই মার্চ ২০২৬<br>সাহেবেরহাট, বড় নলাঙ্গি বাড়ি, কোচবিহার</p>
 </div>`,
- pagesContent.splice(4, 0, `<div class="spotlight">
+
+/* ===== Romantic Story Page (NEW) ===== */
+
+`<div class="spotlight" style="text-align:center;">
   <h3 class="gold">আমাদের গল্প</h3>
 
   <p style="margin-top:20px; line-height:1.8;">
@@ -232,11 +236,13 @@ const pagesContent=[
     শুরু করতে চলেছে  
     তাদের নতুন জীবনের সুন্দর অধ্যায়।
   </p>
-</div>`);
+</div>`,
+
+/* ===== Final Page ===== */
 
 `<h3 class="gold spotlight">আপনার উপস্থিতি ও আশীর্বাদ একান্ত কাম্য</h3>`
-];
 
+];
 function renderBook(){
   const book=document.getElementById("book");
   book.innerHTML="";
@@ -296,5 +302,6 @@ function shareBook(){
 
 </body>
 </html>
+
 
 
