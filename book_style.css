@@ -7,7 +7,7 @@ body{
   overflow-x:hidden;
 }
 
-/* Title */
+/* Main Title */
 .main-title{
   margin-top:30px;
   font-size:28px;
@@ -35,7 +35,7 @@ body{
   animation:openBook 1.5s ease forwards;
 }
 
-/* Spine depth */
+/* Spine */
 .book::before{
   content:"";
   position:absolute;
@@ -47,7 +47,7 @@ body{
   transform-origin:left;
 }
 
-/* Pages */
+/* Page */
 .page{
   position:absolute;
   width:100%;
@@ -68,35 +68,85 @@ body{
   overflow:hidden;
 }
 
+/* Double Border */
+.page::before{
+  content:"";
+  position:absolute;
+  inset:20px;
+  border:2px solid rgba(255,215,0,0.6);
+  border-radius:10px;
+  pointer-events:none;
+}
+
 .page::after{
   content:"";
   position:absolute;
-  right:0;
-  top:0;
-  width:60px;
-  height:100%;
-  background:linear-gradient(to left, rgba(0,0,0,0.4), transparent);
+  inset:10px;
+  border:1px solid rgba(255,215,0,0.3);
+  border-radius:14px;
+  pointer-events:none;
 }
 
 .page.flipped{
   transform:rotateY(-180deg);
 }
 
-/* Text Style */
-.gold-text{
+/* Stylish Couple Name */
+.couple-name{
+  font-family:'Tiro Bangla',serif;
+  font-size:28px;
+  letter-spacing:2px;
+  background:linear-gradient(45deg,#ffd700,#fff5b7,#d4af37);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  text-shadow:0 0 15px rgba(255,215,0,0.4);
+  margin-bottom:10px;
+}
+
+/* Subtitle Animation */
+.subtitle{
   font-size:22px;
   line-height:1.7;
+  position:relative;
+  opacity:0;
+  transform:translateY(25px);
+  animation:subtitleReveal 1.5s ease forwards;
   background:linear-gradient(45deg,#ffd700,#fff5b7,#d4af37);
   -webkit-background-clip:text;
   -webkit-text-fill-color:transparent;
 }
 
-/* Couple Image */
+@keyframes subtitleReveal{
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+/* Shine Sweep */
+.subtitle::after{
+  content:"";
+  position:absolute;
+  top:0;
+  left:-100%;
+  width:100%;
+  height:100%;
+  background:linear-gradient(120deg,transparent,rgba(255,255,255,0.4),transparent);
+  animation:shineSweep 3s infinite;
+}
+
+@keyframes shineSweep{
+  0%{left:-100%;}
+  100%{left:120%;}
+}
+
+/* Couple */
 .couple-wrapper{
   position:relative;
   display:flex;
   justify-content:center;
   align-items:center;
+  margin-top:20px;
 }
 
 .couple-img{
@@ -106,7 +156,6 @@ body{
   filter:drop-shadow(0 15px 25px rgba(0,0,0,0.6));
 }
 
-/* Glow behind couple */
 .couple-wrapper::before{
   content:"";
   position:absolute;
@@ -118,15 +167,9 @@ body{
   animation:pulseGlow 4s infinite;
 }
 
-/* Animations */
-@keyframes openBook{
-  from{transform:rotateY(0);}
-  to{transform:rotateY(-15deg);}
-}
-
 @keyframes coupleEntrance{
-  0%{opacity:0; transform:scale(0.8);}
-  100%{opacity:1; transform:scale(1);}
+  from{opacity:0; transform:scale(0.8);}
+  to{opacity:1; transform:scale(1);}
 }
 
 @keyframes pulseGlow{
@@ -148,4 +191,10 @@ body{
 @keyframes floatParticle{
   from{transform:translateY(0);}
   to{transform:translateY(-600px);}
+}
+
+/* Open animation */
+@keyframes openBook{
+  from{transform:rotateY(0);}
+  to{transform:rotateY(-15deg);}
 }
