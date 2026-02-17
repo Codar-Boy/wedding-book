@@ -52,10 +52,10 @@ function renderBook(){
     page.style.zIndex=100-index;
     page.innerHTML=html;
 
-    page.onclick=()=>{
-      page.classList.toggle("flipped");
-      flipSound.currentTime=0;
-      flipSound.play();
+    page.onclick = () => {
+    page.classList.toggle("flipped");
+    flipSound.currentTime = 0;
+    flipSound.play().catch(() => {});
     };
 
     book.appendChild(page);
@@ -78,3 +78,4 @@ async function exportPDF(){
 
   pdf.save("Wedding_Invitation.pdf");
 }
+
