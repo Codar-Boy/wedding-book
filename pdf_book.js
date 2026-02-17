@@ -1,6 +1,9 @@
 const book = document.getElementById("book");
 const flipSound = document.getElementById("pageSound");
 
+let currentPage = 0;
+let pages = [];
+
 const pagesContent = [
 
 `<div class="subtitle">শ্রীশ্রী গণেশায় নমঃ</div>`,
@@ -15,13 +18,13 @@ const pagesContent = [
 `<div class="subtitle">
 শুভ বিবাহ<br>
 ০৯ই মার্চ ২০২৬<br>
-সাহেবেরহাট, বড় নলাঙ্গি বাড়ি, কোচবিহার
+সাহেবেরহাট, বড় নলাঙ্গি বাড়ি, পাটছড়া, নিকট সাহেবেরহাট হাই স্কুল, কোচবিহার
 </div>`,
 
 `<div class="subtitle">
 রিসেপশন<br>
 ১২ই মার্চ ২০২৬<br>
-সাহেবেরহাট, বড় নলাঙ্গি বাড়ি, কোচবিহার
+সাহেবেরহাট, বড় নলাঙ্গি বাড়ি, পাটছড়া, নিকট সাহেবেরহাট হাই স্কুল, কোচবিহার
 </div>`,
 
 `<div class="subtitle">
@@ -54,14 +57,28 @@ function renderBook(){
 
     createParticles(page);
 
-    page.onclick=()=>{
-      page.classList.toggle("flipped");
-      flipSound.currentTime=0;
-      flipSound.play().catch(()=>{});
-    };
-
     book.appendChild(page);
+    pages.push(page);
   });
+
+  // Click anywhere on book
+  book.addEventListener("click", handleFlip);
+}
+
+function handleFlip(){
+
+  // Play sound
+  flipSound.currentTime = 0;
+  flipSound.play().catch(()=>{});
+
+  if(currentPage < pages.length){
+    pages[currentPage].classList.add("flipped");
+    currentPage++;
+  } else {
+    // RESET BOOK
+    pages.forEach(p => p.classList.remove("flipped"));
+    currentPage = 0;
+  }
 }
 
 renderBook();
